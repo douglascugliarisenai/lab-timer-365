@@ -1,12 +1,17 @@
 import { useState } from 'react'
+import { HomePage } from './pages/home';
+import { Layout } from './template';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1>Hello Worldm LAB365</h1>
+      <Layout>
+        <HomePage />
+      </Layout>
     </>
+    
   )
 }
 
