@@ -1,8 +1,36 @@
-# React + Vite
+# Lab365 Pomodoro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lab365 Pomodoro é uma aplicação de gerenciamento de tempo utilizando a técnica Pomodoro, desenvolvida com React e Vite.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Temporizador Pomodoro**: Defina intervalos de trabalho.
+- **Configurações Personalizáveis**: Ajuste a duração dos intervalos de trabalho.
+- **Histórico de Sessões**: Acompanhe o histórico das suas sessões de trabalho.
+
+## Tecnologias Utilizadas
+
+- React
+- Vite
+
+## Instalação
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/douglascugliarisenai/lab-timer-365
+2. Abra o terminal e execute:
+   ```bash
+   cd lab-timer-365
+   npm install
+   npm run dev
+   ```
+3. Acesse localhost:3000
+
+
+## Contribuições
+
+- [Repositório](https://github.com/douglascugliarisenai/lab-timer-365)
+- [Issues](https://github.com/douglascugliarisenai/lab-timer-365/issues)
+
+
+##### Desenvolvido por [@DouglasCugliarisenai](https://github.com/douglascugliarisenai)
