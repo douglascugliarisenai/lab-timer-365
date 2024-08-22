@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
-import { differenceInSeconds } from 'date-fns'
 import PropTypes from 'prop-types'
+import { differenceInSeconds } from 'date-fns'
+import { useCycle } from '../../contexts/cycle'
+
 
 import './timer.css'
-export function Timer({ activeCycle }) {
+export function Timer() {
+    const { activeCycle, markCurrentCycleAsFinished } = useCycle()
 
     const [amountSecondsPassed, setAmountSecondsPassed] = useState(() => {
         if (activeCycle) {
@@ -11,7 +14,6 @@ export function Timer({ activeCycle }) {
         }
         return 0
     })
-
 
     /** Calculo de tempo restante */
     const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
@@ -24,6 +26,11 @@ export function Timer({ activeCycle }) {
     const minutes = String(minutesAmount).padStart(2, '0')
     const seconds = String(secondsAmount).padStart(2, '0')
 
+    function playSound() {
+        const audio = new Audio('/audios/countdown.mp3')
+        audio.play()
+    }
+
     useEffect(() => {
         let intervalId;
 
@@ -33,6 +40,7 @@ export function Timer({ activeCycle }) {
                 const secondsDifference = differenceInSeconds(new Date(), new Date(activeCycle.startDate))
 
                 if (secondsDifference >= totalSeconds) {
+                    markCurrentCycleAsFinished()
                    setAmountSecondsPassed(totalSeconds)
 
                    clearInterval(intervalId)
@@ -45,9 +53,27 @@ export function Timer({ activeCycle }) {
         return () => {
             clearInterval(intervalId)
         }
-    }, [activeCycle])
+    }, [activeCycle, totalSeconds, markCurrentCycleAsFinished])
     
  
+    useEffect(() => {
+        if(minutesAmount === 0 && secondsAmount === 3) {
+            console.log('play sound')
+            playSound()
+        }
+    }, [secondsAmount, minutesAmount])
+
+    useEffect(() => {
+        if(activeCycle) {
+            document.title = `${minutes}:${seconds}`
+        } else {
+            document.title = 'Timer Lab365'
+        }
+
+        if(minutes === '00' && seconds === '00') {
+            document.title = 'Timer Lab365'
+        }
+    }, [minutes, seconds, activeCycle])
 
     return (
         <div className="container--timer">
