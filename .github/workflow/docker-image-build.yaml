@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - feature/criando-arquivo-github-actions
 
 jobs:
   build:
@@ -24,4 +25,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: YOUR_DOCKERHUB_USERNAME/your-repo-name:latest
+          tags: {{ secrets.DOCKERHUB_USERNAME }}/{{ secrets.DOCKERHUB_REPO:latest }}
